@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Word-Counter</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+		<textarea id="fname" name="fname" oninput="WordCounter()" style="margin: 20px;" placeholder="write bg color" ></textarea><br>
+		
+		<p id="lname" name="lname" ></p>
+		<p id="msg" ></p>
+
+
+	<script>
+		'use strict'
+		function WordCounter() {
+			let str = document.getElementById("fname").value;
+			let info = document.getElementById("lname");
+			let msg = document.getElementById("msg");
+
+			if(str.length){
+				let letters = 'Letter : ' + str.match(/[a-zA-Z]/g).length
+				let words = 'Word : ' + str.trim().split(/\s+/).length;
+				let sentnces = "Sentences : " + str.split(/[.?!]/g).filter(Boolean).length;
+
+				info.innerHTML = letters +' and '+ words + ' and ' + sentnces;
+
+				document.body.style.backgroundColor = str.split(/\s+/)[0];
+
+				for(let i in str.trim().split(/\s+/)){
+					console.log(document.body.style.backgroundColor != str.trim().split(/\s+/)[i])
+					document.body.style.backgroundColor = str.trim().split(/\s+/)[i];
+					
+					if(document.body.style.backgroundColor != str.trim().split(/\s+/)[i]){
+						msg.innerHTML = 'Somthing Wrong with your answer please check color !'
+					}else{
+						msg.innerHTML = 'Good my code work'
+					}
+
+				}
+
+			}
+		}
+
+
+	</script>
+</body>
+</html>
